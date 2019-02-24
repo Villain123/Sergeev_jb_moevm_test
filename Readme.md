@@ -17,7 +17,7 @@
 -----------------------------------
 Для запуска программы поиска напишите команду
 
-    python3 minotaur.py root
+    python3 Minotaur.py root
     
 где *root* - это имя корневой папки, откуда начнут вестись поиски файла-минотавра. В ходе работы программа рекурсивно обойдет все поддиректории и все файлы вида *<filename>.txt*, начиная с *file.txt* ,которые могут содержать несколько ссылок *"@include <filename>.txt"*, либо файл со строкой *"Deadlock"* или *"Minotaur"*. Если программа отработает без ошибок, в консоль будут выведены все пути, ведущие к файлу-минотавру.
 ***
@@ -27,7 +27,7 @@
 
 Пример работы программы
 -----------------------------------
-    python3 minotaur.py test
+    python3 Minotaur.py test
     ./test/lpifp/dpljd/efjjck/file.txt
     ./test/a.txt
     ./test/lpifp/dpljd/efjjck/jgdh/mlffgp/ckhfle/dfpgfn/ncd/oml/d.txt
