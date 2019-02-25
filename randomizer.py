@@ -13,7 +13,7 @@ def get_command_args():
     return pars
 
 
-def random_tree_gen(root_name, deep, dir_list):
+def random_dir_gen(root_name, deep, dir_list):
     if deep == 0:
         return
     if deep < 0 or deep > 3000:
@@ -25,7 +25,7 @@ def random_tree_gen(root_name, deep, dir_list):
             next_dir = ""
             for j in range(random.randint(3, 6)):
                 next_dir += random.choice(STRING)
-            random_tree_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
+            random_dir_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
     except FileExistsError:
         raise
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     try:
         directories = list()
         args = get_command_args().parse_args()
-        random_tree_gen(args.root_name, args.depth, directories)
+        random_dir_gen(args.root_name, args.depth, directories)
         random_files_gen(directories)
     except FileExistsError:
         print("The directory \"{}\" already exists!".format(args.root_name))
