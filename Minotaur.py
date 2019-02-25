@@ -26,7 +26,7 @@ def find_minos(root_name, file_name, my_list):
     with open(curr_path, 'r') as curr_file:
         line = curr_file.readline()
         if not line:
-            print("File is empty")
+            print("Wrong input in file \"{}\"".format(file_name))
             return 1
         while line:
             if line.strip() == "Deadlock":
