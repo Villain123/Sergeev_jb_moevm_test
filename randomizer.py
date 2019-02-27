@@ -2,7 +2,7 @@ import os
 import random
 import argparse
 STRING = "abcdefghijklmnop"
-DICTIONARY = {"file": "abop", "a": "cd", "b": "ef", "c": "D", "d": "gh", "e": "ki", "f": "D", "g": "lm", "m": "1",
+DICTIONARY = {"file": "abop", "a": "cd", "b": "ef", "c": "D", "d": "gh", "e": "ki", "f": "D", "g": "lm", "m": "D",
               "h": "D", "k": "D", "l": "D", "i": "j", "j": "n", "n": "D", "o": "D", "p": "D"}
 
 
@@ -21,7 +21,7 @@ def random_dir_gen(root_name, deep, dir_list):
     try:
         os.mkdir(root_name)
         dir_list.append(root_name)
-        for i in range(random.randint(1, 2)):
+        for i in range(0, random.randint(1, 5)):
             next_dir = ""
             for j in range(random.randint(3, 6)):
                 next_dir += random.choice(STRING)
@@ -32,7 +32,11 @@ def random_dir_gen(root_name, deep, dir_list):
 
 def random_files_gen(dir_list):
     tree = DICTIONARY
-    tree[random.choice(STRING)] = "Minotaur"
+    choose_minos = list()
+    for key, value in tree.items():
+        if (value == "D")
+            choose_minos.append(key)
+    tree[random.choice(choose_minos)] = "Minoraur"
     for key, value in tree.items():
         with open(os.path.join(random.choice(dir_list), "{}.txt".format(key)), "w") as curr_file:
             if value == "Minotaur":
@@ -40,7 +44,7 @@ def random_files_gen(dir_list):
             elif value == "D":
                 curr_file.write("Deadlock")
             else:
-                for i in range(len(value)):
+                for i in range(0, len(value)):
                     curr_file.write("@include {}.txt\n".format(value[i]))
 
 
