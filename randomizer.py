@@ -34,7 +34,7 @@ def random_files_gen(dir_list):
     tree = DICTIONARY
     choose_minos = list()
     for key, value in tree.items():
-        if (value == "D")
+        if (value == "D"):
             choose_minos.append(key)
     tree[random.choice(choose_minos)] = "Minoraur"
     for key, value in tree.items():
