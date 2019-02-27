@@ -36,7 +36,7 @@ def random_files_gen(dir_list):
     for key, value in tree.items():
         if (value == "D"):
             choose_minos.append(key)
-    tree[random.choice(choose_minos)] = "Minoraur"
+    tree[random.choice(choose_minos)] = "Minotaur"
     for key, value in tree.items():
         with open(os.path.join(random.choice(dir_list), "{}.txt".format(key)), "w") as curr_file:
             if value == "Minotaur":
