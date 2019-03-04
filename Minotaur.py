@@ -20,27 +20,27 @@ def find_next_file(root_name, file_name):
 def find_minos(root_name, file_name, my_list):
     curr_path = find_next_file(root_name, file_name)
     my_list.append(curr_path)
-    if curr_path is None:
-        my_list.pop()
-        return 0
-    with open(curr_path, 'r') as curr_file:
-        line = curr_file.readline()
-        if not line:
-            print("Wrong input in file \"{}\"".format(file_name))
-            return 1
-        while line:
-            if line.strip() == "Deadlock":
-                my_list.pop()
+    next_one = my_list[-1]
+    if next_one is not None:
+        with open(curr_path, 'r') as curr_file:
+            line = curr_file.readline()
+            if not line:
+                print("File is empty")
                 return 1
-            elif line.strip() == "Minotaur":
-                return 0
-            elif line.split()[0] == "@include" and line.split()[1].endswith(".txt"):
-                if find_minos(root_name, line.split()[1], my_list) == 0:
+            while line:
+                if line.strip() == "Deadlock":
+                    my_list.pop()
+                    return 1
+                elif line.strip() == "Minotaur":
                     return 0
-                line = curr_file.readline()
-            else:
-                print("Wrong input in file \"{}\"".format(file_name))
-                return 1
+                elif line.split()[0] == "@include" and line.split()[1].endswith(".txt"):
+                    if find_minos(root_name, line.split()[1], my_list) == 0:
+                        return 0
+                    line = curr_file.readline()
+                else:
+                    print("Wrong input in file \"{}\"".format(file_name))
+                    return 1
+    my_list.pop()
     return 1
 
 
@@ -50,7 +50,7 @@ def process():
         my_list = list()
         if find_minos(root_name, "file.txt", my_list) == 0:
             for i in my_list:
-                print("./{}".format(i))
+                print("{}".format(i))
         else:
             print("Minotaur was not found")
     except FileNotFoundError:
@@ -59,4 +59,3 @@ def process():
 
 if __name__ == "__main__":
     process()
-
