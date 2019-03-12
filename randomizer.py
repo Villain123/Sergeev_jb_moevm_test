@@ -1,9 +1,6 @@
 import os
 import random
 import argparse
-STRING = "abcdefghijklmnop"
-DICTIONARY = {"file": "abop", "a": "cd", "b": "ef", "c": "D", "d": "gh", "e": "ki", "f": "D", "g": "lm", "m": "D",
-              "h": "D", "k": "D", "l": "D", "i": "j", "j": "n", "n": "D", "o": "D", "p": "D"}
 
 
 def get_command_args():
@@ -14,6 +11,7 @@ def get_command_args():
 
 
 def random_dir_gen(root_name, deep, dir_list):
+    string = "abcdefghijklmnop"
     if deep == 0:
         return
     if deep < 0 or deep > 3000:
@@ -24,14 +22,15 @@ def random_dir_gen(root_name, deep, dir_list):
         for i in range(0, random.randint(1, 5)):
             next_dir = ""
             for j in range(random.randint(3, 6)):
-                next_dir += random.choice(STRING)
+                next_dir += random.choice(string)
             random_dir_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
     except FileExistsError:
         raise
 
 
 def random_files_gen(dir_list):
-    tree = DICTIONARY
+    tree = {"file": "abop", "a": "cd", "b": "ef", "c": "D", "d": "gh", "e": "ki", "f": "D", "g": "lm", "m": "D",
+              "h": "D", "k": "D", "l": "D", "i": "j", "j": "n", "n": "D", "o": "D", "p": "D"}
     choose_minos = list()
     for key, value in tree.items():
         if (value == "D"):
@@ -55,4 +54,4 @@ if __name__ == '__main__':
         random_dir_gen(args.root_name, args.depth, directories)
         random_files_gen(directories)
     except FileExistsError:
-        print("The directory \"{}\" already exists!".format(args.root_name))
+        print('The directory "{}" already exists!'.format(args.root_name))
