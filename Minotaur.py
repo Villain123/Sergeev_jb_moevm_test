@@ -14,7 +14,6 @@ def find_next_file(root_name, file_name):
         for file in files:
             if file == file_name:
                 return os.path.join(root, file)
-    return None
 
 
 def find_minos(root_name, file_name, my_list):
@@ -33,12 +32,12 @@ def find_minos(root_name, file_name, my_list):
                     return 1
                 elif line.strip() == "Minotaur":
                     return 0
-                elif line.split()[0] == "@include" and line.split()[1].endswith(".txt"):
+                elif line.rfind("@include ", 0, 9) == 0 and line.endswith(".txt\n"):
                     if find_minos(root_name, line.split()[1], my_list) == 0:
                         return 0
                     line = curr_file.readline()
                 else:
-                    print("Wrong input in file \"{}\"".format(file_name))
+                    print('Wrong input in file "{}"'.format(file_name))
                     return 1
     my_list.pop()
     return 1
@@ -46,15 +45,15 @@ def find_minos(root_name, file_name, my_list):
 
 def process():
     root_name = get_root_name()
-    try:
-        my_list = list()
+    my_list = list()
+    if os.path.isdir(root_name):
         if find_minos(root_name, "file.txt", my_list) == 0:
             for i in my_list:
                 print("{}".format(i))
         else:
             print("Minotaur was not found")
-    except FileNotFoundError:
-        print("Directory \"{}\" was not found".format(root_name))
+    else:
+        print('Directory "{}" was not found'.format(root_name))
 
 
 if __name__ == "__main__":
