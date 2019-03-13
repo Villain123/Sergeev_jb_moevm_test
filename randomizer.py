@@ -16,16 +16,13 @@ def random_dir_gen(root_name, deep, dir_list):
         return
     if deep < 0 or deep > 3000:
         print("Wrong deep")
-    try:
-        os.mkdir(root_name)
-        dir_list.append(root_name)
-        for i in range(0, random.randint(1, 5)):
-            next_dir = ""
-            for j in range(random.randint(3, 6)):
-                next_dir += random.choice(string)
-            random_dir_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
-    except FileExistsError:
-        raise
+    os.mkdir(root_name)
+    dir_list.append(root_name)
+    for i in range(0, random.randint(1, 5)):
+        next_dir = ""
+        for j in range(random.randint(3, 6)):
+            next_dir += random.choice(string)
+        random_dir_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
 
 
 def random_files_gen(dir_list):
