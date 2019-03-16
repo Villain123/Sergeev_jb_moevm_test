@@ -33,7 +33,10 @@ def find_minos(root_name, file_name, my_list):
                 elif line.strip() == "Minotaur":
                     return 0
                 elif line.rfind("@include ", 0, 9) == 0 and line.endswith(".txt\n"):
-                    if find_minos(root_name, line.split()[1], my_list) == 0:
+                    next_file = ""
+                    for i in range(9, len(line)-1):
+                        next_file = next_file + line[i]
+                    if find_minos(root_name, next_file, my_list) == 0:
                         return 0
                     line = curr_file.readline()
                 else:
