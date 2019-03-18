@@ -24,7 +24,7 @@ def random_dir_gen(root_name, deep, dir_list):
         next_dir = ""
         for j in range(random.randint(3, 6)):
             next_dir += random.choice(string)
-        for k in check:
+        for k in check_dir:
             if k == next_dir:
                 flag = 1
                 break
