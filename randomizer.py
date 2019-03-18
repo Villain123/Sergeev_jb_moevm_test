@@ -18,10 +18,19 @@ def random_dir_gen(root_name, deep, dir_list):
         print("Wrong deep")
     os.mkdir(root_name)
     dir_list.append(root_name)
+    check_dir = list()
     for i in range(0, random.randint(1, 5)):
+        flag = 0
         next_dir = ""
         for j in range(random.randint(3, 6)):
             next_dir += random.choice(string)
+        for k in check:
+            if k == next_dir:
+                flag = 1
+                break
+        if flag == 1:
+            continue
+        check_dir.append(next_dir)
         random_dir_gen("{0}/{1}".format(root_name, next_dir), deep - 1, dir_list)
 
 
